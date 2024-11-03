@@ -24,6 +24,10 @@ def generate_launch_description():
             'target_frame', default_value='turtle1',
             description='Target frame name.'
         ),
+        DeclareLaunchArgument(
+            'delay', default_value='5.0',
+            description='Delay in seconds before transformation lookup.'
+        ),
         Node(
             package='turtle_tf2_cpp',
             executable='turtle_tf2_broadcaster',
@@ -38,7 +42,7 @@ def generate_launch_description():
             name='listener',
             parameters=[
                 {'target_frame': LaunchConfiguration('target_frame'),
-                 'delay': 10.0
+                 'delay': LaunchConfiguration('delay') 
                 }
             ]
         ),
